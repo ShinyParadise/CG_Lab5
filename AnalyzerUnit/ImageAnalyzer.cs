@@ -12,11 +12,14 @@ namespace CG_Lab5.AnalyzerUnit
             _bitmap = (Bitmap)bitmap.Clone();
             _segments = ExtractAndSaveSegments(_bitmap);
 
+
+
             return 0;
         }
 
         private List<ImageSegment> ExtractAndSaveSegments(Bitmap grayscaleImage)
         {
+            GraphicsUnit unit = GraphicsUnit.Pixel;
             List<ImageSegment> segments = new();
 
             for (int x = 0; x < grayscaleImage.Width; x++)
@@ -31,12 +34,20 @@ namespace CG_Lab5.AnalyzerUnit
                         ExtractSegment(grayscaleImage, x, y, ref segmentPoints);
 
                         Bitmap segmentImage = CreateSegmentImage(grayscaleImage, segmentPoints);
-                        ulong perceptualHash = HashCalculator.Calculate(segmentImage);
 
+                        // Применяем суперсемплинг
+                        Bitmap resizedSegment = SuperSampling(segmentImage, 8, 8);
+
+                        // Вычисляем перцептивный хеш для сегмента
+                        ulong perceptualHash = HashCalculator.Calculate(resizedSegment);
+
+                        // Сохраняем информацию о сегменте
                         segments.Add(new ImageSegment
                         {
-                            SegmentImage = segmentImage,
-                            PerceptualHash = perceptualHash
+                            SegmentImage = resizedSegment,
+                            PerceptualHash = perceptualHash,
+                            StartPoint = new Point(x, y),
+                            Bounds = segmentImage.GetBounds(ref unit),
                         });
                     }
                 }
@@ -86,6 +97,48 @@ namespace CG_Lab5.AnalyzerUnit
             }
 
             return segmentImage;
+        }
+
+        private Bitmap SuperSampling(Bitmap originalImage, int v1, int v2)
+        {
+            Bitmap resizedImage = new(v1, v2);
+
+            for (int x = 0; x < v1; x++)
+            {
+                for (int y = 0; y < v2; y++)
+                {
+                    int originalX = x * originalImage.Width / v1;
+                    int originalY = y * originalImage.Height / v2;
+
+                    Color newColor = AverageColor(originalImage, originalX, originalY, v1, v2);
+                    resizedImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            return resizedImage;
+        }
+
+        private static Color AverageColor(Bitmap image, int x, int y, int blockWidth, int blockHeight)
+        {
+            int totalR = 0, totalG = 0, totalB = 0;
+
+            for (int i = 0; i < blockWidth; i++)
+            {
+                for (int j = 0; j < blockHeight; j++)
+                {
+                    Color pixelColor = image.GetPixel(x + i, y + j);
+                    totalR += pixelColor.R;
+                    totalG += pixelColor.G;
+                    totalB += pixelColor.B;
+                }
+            }
+
+            int numPixels = blockWidth * blockHeight;
+            int avgR = totalR / numPixels;
+            int avgG = totalG / numPixels;
+            int avgB = totalB / numPixels;
+
+            return Color.FromArgb(avgR, avgG, avgB);
         }
     }
 }

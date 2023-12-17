@@ -4,5 +4,8 @@
     {
         public Bitmap SegmentImage;
         public ulong PerceptualHash;
+
+        public Point StartPoint;
+        public RectangleF Bounds;
     }
 }
