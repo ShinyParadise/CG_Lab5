@@ -5,12 +5,12 @@ namespace CG_Lab5.AnalyzerUnit
     public class ImageAnalyzer
     {
         private List<ImageSegment> _segments = new();
-        private Bitmap? _bitmap;
+        private Bitmap _bitmap;
 
         public double Analyze(Bitmap bitmap)
         {
-            _bitmap = bitmap;
-            _segments = ExtractAndSaveSegments(bitmap);
+            _bitmap = (Bitmap)bitmap.Clone();
+            _segments = ExtractAndSaveSegments(_bitmap);
 
             return 0;
         }
@@ -19,7 +19,6 @@ namespace CG_Lab5.AnalyzerUnit
         {
             List<ImageSegment> segments = new();
 
-            int currentSegmentIndex = 0;
             for (int x = 0; x < grayscaleImage.Width; x++)
             {
                 for (int y = 0; y < grayscaleImage.Height; y++)
@@ -29,7 +28,7 @@ namespace CG_Lab5.AnalyzerUnit
                     {
                         // Если текущий пиксель черный, начинаем процесс извлечения сегмента
                         List<Point> segmentPoints = new();
-                        ExtractSegment(grayscaleImage, x, y, ref currentSegmentIndex, ref segmentPoints);
+                        ExtractSegment(grayscaleImage, x, y, ref segmentPoints);
 
                         Bitmap segmentImage = CreateSegmentImage(grayscaleImage, segmentPoints);
                         ulong perceptualHash = HashCalculator.Calculate(segmentImage);
@@ -47,9 +46,9 @@ namespace CG_Lab5.AnalyzerUnit
         }
 
         // Метод для извлечения сегмента с использованием Depth-First Search (DFS)
-        private void ExtractSegment(Bitmap image, int startX, int startY, ref int currentSegmentIndex, ref List<Point> segmentPoints)
+        private static void ExtractSegment(Bitmap image, int startX, int startY, ref List<Point> segmentPoints)
         {
-            Stack<Point> stack = new Stack<Point>();
+            Stack<Point> stack = new();
             stack.Push(new Point(startX, startY));
 
             while (stack.Count > 0)
@@ -70,7 +69,6 @@ namespace CG_Lab5.AnalyzerUnit
                 image.SetPixel(x, y, Color.White);
                 segmentPoints.Add(new Point(x, y));
 
-                // Добавляем соседние пиксели в стек
                 stack.Push(new Point(x - 1, y));
                 stack.Push(new Point(x + 1, y));
                 stack.Push(new Point(x, y - 1));
