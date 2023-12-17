@@ -7,14 +7,17 @@ namespace CG_Lab5.DatabaseUnit
         public static ulong Calculate(Bitmap image)
         {
             var grayscaleFilter = new GrayscaleFilter();
+            var monochromeFilter = new MonochromeFilter();
+
             int resizedWidth = 8;
             int hashSize = 64;
 
             Bitmap resizedImage = new(image, new Size(resizedWidth, resizedWidth));
 
             Bitmap grayImage = grayscaleFilter.Apply(resizedImage);
+            Bitmap monochromeImg = monochromeFilter.Apply(grayImage);
 
-            double[,] pixelValues = ImageToPixelValues(grayImage);
+            double[,] pixelValues = ImageToPixelValues(monochromeImg);
 
             double[,] dctValues = DCT2D(pixelValues);
 

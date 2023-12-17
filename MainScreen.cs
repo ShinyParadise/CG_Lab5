@@ -138,7 +138,7 @@ namespace CG_Lab5
 
         private void analyzeBtn_Click(object sender, EventArgs e)
         {
-            _analyzer.Analyze(_bitmap);
+            _analyzer.Analyze(_bitmap, _db);
         }
     }
 }

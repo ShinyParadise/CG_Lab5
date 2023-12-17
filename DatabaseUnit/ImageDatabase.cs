@@ -2,19 +2,19 @@
 {
     public class ImageDatabase
     {
-        private Dictionary<string, ulong> imageHashes = new();
+        public Dictionary<string, ulong> ImageHashes = new();
 
         public void AddImage(string imageName, Bitmap image)
         {
             ulong perceptualHash = HashCalculator.Calculate(image);
-            imageHashes[imageName] = perceptualHash;
+            ImageHashes[imageName] = perceptualHash;
         }
 
         public ulong GetHash(string imageName)
         {
-            if (imageHashes.ContainsKey(imageName))
+            if (ImageHashes.ContainsKey(imageName))
             {
-                return imageHashes[imageName];
+                return ImageHashes[imageName];
             }
             else
             {
@@ -26,7 +26,7 @@
         public void SaveHashesToFile(string filePath)
         {
             using BinaryWriter writer = new(File.Open(filePath, FileMode.Create));
-            foreach (var entry in imageHashes)
+            foreach (var entry in ImageHashes)
             {
                 writer.Write(entry.Key);    // записываем имя образа
                 writer.Write(entry.Value);  // записываем хеш
@@ -42,7 +42,7 @@
                 {
                     string imageName = reader.ReadString(); // читаем имя образа
                     ulong hash = reader.ReadUInt64();       // читаем хеш
-                    imageHashes[imageName] = hash;
+                    ImageHashes[imageName] = hash;
                 }
             }
             else
