@@ -18,7 +18,8 @@ namespace CG_Lab5.AnalyzerUnit
                     {
                         SimilarityPercentage = similarity,
                         ImageName = imageHash.Key,
-                        SegmentRectangle = segment.Bounds
+                        SegmentSize = segment.Size,
+                        StartPoint = segment.StartPoint,
                     };
 
                     similarityResults.Add(result);

@@ -138,7 +138,16 @@ namespace CG_Lab5
 
         private void analyzeBtn_Click(object sender, EventArgs e)
         {
-            _analyzer.Analyze(_bitmap, _db);
+            var results = _analyzer.Analyze(_bitmap, _db);
+            var pen = new Pen(Color.Orange, 3);
+            var brush = new SolidBrush(Color.Orange);
+
+            foreach (var res in results)
+            {
+                res.StartPoint.Offset(new(-10, -10));
+                _graphics.DrawString(res.ImageName, DefaultFont, brush, res.StartPoint);
+                _graphics.DrawRectangle(pen, new(res.StartPoint, res.SegmentSize));
+            }
         }
     }
 }

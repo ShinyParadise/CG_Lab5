@@ -49,7 +49,7 @@ namespace CG_Lab5.AnalyzerUnit
                             SegmentImage = resizedSegment,
                             PerceptualHash = perceptualHash,
                             StartPoint = new Point(x, y),
-                            Bounds = segmentImage.GetBounds(ref unit),
+                            Size = resizedSegment.Size * 10,
                         });
                     }
                 }

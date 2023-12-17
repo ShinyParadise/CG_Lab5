@@ -6,6 +6,6 @@
         public ulong PerceptualHash;
 
         public Point StartPoint;
-        public RectangleF Bounds;
+        public Size Size;
     }
 }

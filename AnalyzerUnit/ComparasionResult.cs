@@ -4,6 +4,7 @@
     {
         public string ImageName { get; set; } = "";
         public double SimilarityPercentage { get; set; }
-        public RectangleF SegmentRectangle { get; set; }
+        public Size SegmentSize { get; set; }
+        public Point StartPoint { get; set; }
     }
 }
