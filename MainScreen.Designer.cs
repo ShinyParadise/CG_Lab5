@@ -43,6 +43,7 @@
             addImageBtn = new Button();
             loadImagesBtn = new Button();
             button1 = new Button();
+            analyzeBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             choosePhotoBtn.BackColor = SystemColors.HotTrack;
             choosePhotoBtn.FlatAppearance.BorderSize = 0;
             choosePhotoBtn.ForeColor = SystemColors.ButtonHighlight;
-            choosePhotoBtn.Location = new Point(1239, 797);
+            choosePhotoBtn.Location = new Point(1239, 737);
             choosePhotoBtn.Name = "choosePhotoBtn";
             choosePhotoBtn.Size = new Size(241, 54);
             choosePhotoBtn.TabIndex = 1;
@@ -163,7 +164,7 @@
             addImageBtn.BackColor = Color.IndianRed;
             addImageBtn.FlatAppearance.BorderSize = 0;
             addImageBtn.ForeColor = SystemColors.ButtonHighlight;
-            addImageBtn.Location = new Point(1239, 705);
+            addImageBtn.Location = new Point(1239, 615);
             addImageBtn.Name = "addImageBtn";
             addImageBtn.Size = new Size(241, 54);
             addImageBtn.TabIndex = 12;
@@ -176,7 +177,7 @@
             loadImagesBtn.BackColor = Color.IndianRed;
             loadImagesBtn.FlatAppearance.BorderSize = 0;
             loadImagesBtn.ForeColor = SystemColors.ButtonHighlight;
-            loadImagesBtn.Location = new Point(1239, 645);
+            loadImagesBtn.Location = new Point(1239, 555);
             loadImagesBtn.Name = "loadImagesBtn";
             loadImagesBtn.Size = new Size(241, 54);
             loadImagesBtn.TabIndex = 13;
@@ -189,7 +190,7 @@
             button1.BackColor = Color.IndianRed;
             button1.FlatAppearance.BorderSize = 0;
             button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(1239, 585);
+            button1.Location = new Point(1239, 495);
             button1.Name = "button1";
             button1.Size = new Size(241, 54);
             button1.TabIndex = 14;
@@ -197,11 +198,25 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // analyzeBtn
+            // 
+            analyzeBtn.BackColor = Color.ForestGreen;
+            analyzeBtn.FlatAppearance.BorderSize = 0;
+            analyzeBtn.ForeColor = SystemColors.ButtonHighlight;
+            analyzeBtn.Location = new Point(1239, 797);
+            analyzeBtn.Name = "analyzeBtn";
+            analyzeBtn.Size = new Size(241, 54);
+            analyzeBtn.TabIndex = 15;
+            analyzeBtn.Text = "Анализ";
+            analyzeBtn.UseVisualStyleBackColor = false;
+            analyzeBtn.Click += analyzeBtn_Click;
+            // 
             // MainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1492, 863);
+            Controls.Add(analyzeBtn);
             Controls.Add(button1);
             Controls.Add(loadImagesBtn);
             Controls.Add(addImageBtn);
@@ -241,5 +256,6 @@
         private Button addImageBtn;
         private Button loadImagesBtn;
         private Button button1;
+        private Button analyzeBtn;
     }
 }

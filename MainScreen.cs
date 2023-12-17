@@ -1,3 +1,4 @@
+using CG_Lab5.AnalyzerUnit;
 using CG_Lab5.DatabaseUnit;
 using CG_Lab5.PreparationUnit;
 
@@ -11,6 +12,7 @@ namespace CG_Lab5
 
         private ImagePreparator _imagePreparator;
         private ImageDatabase _db = new();
+        private ImageAnalyzer _analyzer = new();
 
         private int _kernelSize = 1;
         private int _matrixSize = 1;
@@ -132,6 +134,11 @@ namespace CG_Lab5
             {
                 _db.SaveHashesToFile(dialog.FileName);
             }
+        }
+
+        private void analyzeBtn_Click(object sender, EventArgs e)
+        {
+            _analyzer.Analyze(_bitmap);
         }
     }
 }
