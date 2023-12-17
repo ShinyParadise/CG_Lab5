@@ -4,24 +4,19 @@ namespace CG_Lab5.DatabaseUnit
 {
     public class ImageDatabase
     {
-        private Dictionary<string, ulong> Hashes;
-
-        public ImageDatabase()
-        {
-            Hashes = new Dictionary<string, ulong>();
-        }
+        private Dictionary<string, ulong> imageHashes = new();
 
         public void AddImage(string imageName, Bitmap image)
         {
             ulong perceptualHash = CalculatePerceptualHash(image);
-            Hashes[imageName] = perceptualHash;
+            imageHashes[imageName] = perceptualHash;
         }
 
         public ulong GetHash(string imageName)
         {
-            if (Hashes.ContainsKey(imageName))
+            if (imageHashes.ContainsKey(imageName))
             {
-                return Hashes[imageName];
+                return imageHashes[imageName];
             }
             else
             {
@@ -33,7 +28,7 @@ namespace CG_Lab5.DatabaseUnit
         public void SaveHashesToFile(string filePath)
         {
             using BinaryWriter writer = new(File.Open(filePath, FileMode.Create));
-            foreach (var entry in Hashes)
+            foreach (var entry in imageHashes)
             {
                 writer.Write(entry.Key);    // записываем имя образа
                 writer.Write(entry.Value);  // записываем хеш
@@ -49,7 +44,7 @@ namespace CG_Lab5.DatabaseUnit
                 {
                     string imageName = reader.ReadString(); // читаем имя образа
                     ulong hash = reader.ReadUInt64();       // читаем хеш
-                    Hashes[imageName] = hash;
+                    imageHashes[imageName] = hash;
                 }
             }
             else
@@ -62,6 +57,7 @@ namespace CG_Lab5.DatabaseUnit
         {
             var grayscaleFilter = new GrayscaleFilter();
             int resizedWidth = 8;
+            int hashSize = 64;
 
             Bitmap resizedImage = new(image, new Size(resizedWidth, resizedWidth));
 
@@ -83,7 +79,7 @@ namespace CG_Lab5.DatabaseUnit
                 }
             }
 
-            average /= (resizedWidth * resizedWidth);
+            average /= hashSize;
 
             for (int x = 0; x < resizedWidth; x++)
             {
