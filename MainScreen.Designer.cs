@@ -40,6 +40,9 @@
             dilationBtn = new Button();
             label3 = new Label();
             textBox3 = new TextBox();
+            addImageBtn = new Button();
+            loadImagesBtn = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -155,11 +158,53 @@
             textBox3.TabIndex = 10;
             textBox3.TextChanged += textBox3_TextChanged;
             // 
+            // addImageBtn
+            // 
+            addImageBtn.BackColor = Color.IndianRed;
+            addImageBtn.FlatAppearance.BorderSize = 0;
+            addImageBtn.ForeColor = SystemColors.ButtonHighlight;
+            addImageBtn.Location = new Point(1239, 705);
+            addImageBtn.Name = "addImageBtn";
+            addImageBtn.Size = new Size(241, 54);
+            addImageBtn.TabIndex = 12;
+            addImageBtn.Text = "Добавить образ в базу";
+            addImageBtn.UseVisualStyleBackColor = false;
+            addImageBtn.Click += addImageBtn_Click;
+            // 
+            // loadImagesBtn
+            // 
+            loadImagesBtn.BackColor = Color.IndianRed;
+            loadImagesBtn.FlatAppearance.BorderSize = 0;
+            loadImagesBtn.ForeColor = SystemColors.ButtonHighlight;
+            loadImagesBtn.Location = new Point(1239, 645);
+            loadImagesBtn.Name = "loadImagesBtn";
+            loadImagesBtn.Size = new Size(241, 54);
+            loadImagesBtn.TabIndex = 13;
+            loadImagesBtn.Text = "Загрузить хеши";
+            loadImagesBtn.UseVisualStyleBackColor = false;
+            loadImagesBtn.Click += loadImagesBtn_Click;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.IndianRed;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.ForeColor = SystemColors.ButtonHighlight;
+            button1.Location = new Point(1239, 585);
+            button1.Name = "button1";
+            button1.Size = new Size(241, 54);
+            button1.TabIndex = 14;
+            button1.Text = "Сохранить хеши";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // MainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1492, 863);
+            Controls.Add(button1);
+            Controls.Add(loadImagesBtn);
+            Controls.Add(addImageBtn);
             Controls.Add(label3);
             Controls.Add(textBox3);
             Controls.Add(dilationBtn);
@@ -193,5 +238,8 @@
         private Button dilationBtn;
         private Label label3;
         private TextBox textBox3;
+        private Button addImageBtn;
+        private Button loadImagesBtn;
+        private Button button1;
     }
 }

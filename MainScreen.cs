@@ -1,3 +1,4 @@
+using CG_Lab5.DatabaseUnit;
 using CG_Lab5.PreparationUnit;
 
 namespace CG_Lab5
@@ -8,10 +9,11 @@ namespace CG_Lab5
         private Graphics _graphics;
         private Color _bgColor = Color.White;
 
-        private int _matrixSize = 1;
-
         private ImagePreparator _imagePreparator;
+        private ImageDatabase _db = new();
+
         private int _kernelSize = 1;
+        private int _matrixSize = 1;
         private int _monochromeBound = 128;
 
         public MainScreen()
@@ -102,6 +104,34 @@ namespace CG_Lab5
         {
             _ = int.TryParse(textBox3.Text, out _monochromeBound);
             _imagePreparator.MonochromeBound = _monochromeBound;
+        }
+
+        private void addImageBtn_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog dialog = new();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var addedImage = new Bitmap(dialog.FileName);
+                _db.AddImage(dialog.SafeFileName, addedImage);
+            }
+        }
+
+        private void loadImagesBtn_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog dialog = new();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _db.LoadHashesFromFile(dialog.FileName);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using SaveFileDialog dialog = new();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _db.SaveHashesToFile(dialog.FileName);
+            }
         }
     }
 }
