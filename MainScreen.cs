@@ -142,11 +142,20 @@ namespace CG_Lab5
         {
             var results = _analyzer.Analyze(_bitmap, _db);
             var pen = new Pen(Color.Orange, 3);
+            var brush = new SolidBrush(Color.Orange);
 
             foreach (var res in results)
             {
                 _graphics.DrawRectangle(pen, res.Blob.Rectangle);
+                _graphics.DrawString(
+                    res.ImageName + " " + res.SimilarityPercentage + "%",
+                    DefaultFont,
+                    brush,
+                    new Point(res.Blob.Rectangle.Right, res.Blob.Rectangle.Bottom)
+                );
             }
+
+            LoadBitmap(_bitmap);
         }
     }
 }

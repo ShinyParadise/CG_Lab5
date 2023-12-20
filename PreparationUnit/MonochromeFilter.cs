@@ -1,4 +1,6 @@
-﻿namespace CG_Lab5.PreparationUnit
+﻿using System.Drawing.Imaging;
+
+namespace CG_Lab5.PreparationUnit
 {
     public class MonochromeFilter : IFilter
     {
