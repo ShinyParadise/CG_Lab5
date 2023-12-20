@@ -1,6 +1,8 @@
+using AForge.Imaging;
 using CG_Lab5.AnalyzerUnit;
 using CG_Lab5.DatabaseUnit;
 using CG_Lab5.PreparationUnit;
+using System.Drawing;
 
 namespace CG_Lab5
 {
@@ -140,13 +142,10 @@ namespace CG_Lab5
         {
             var results = _analyzer.Analyze(_bitmap, _db);
             var pen = new Pen(Color.Orange, 3);
-            var brush = new SolidBrush(Color.Orange);
 
             foreach (var res in results)
             {
-                res.StartPoint.Offset(new(-10, -10));
-                _graphics.DrawString(res.ImageName, DefaultFont, brush, res.StartPoint);
-                _graphics.DrawRectangle(pen, new(res.StartPoint, res.SegmentSize));
+                _graphics.DrawRectangle(pen, res.Blob.Rectangle);
             }
         }
     }

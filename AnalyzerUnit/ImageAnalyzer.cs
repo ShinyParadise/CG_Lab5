@@ -1,61 +1,37 @@
-﻿using CG_Lab5.DatabaseUnit;
+﻿using AForge.Imaging;
+using CG_Lab5.DatabaseUnit;
+using Point = System.Drawing.Point;
 
 namespace CG_Lab5.AnalyzerUnit
 {
     public class ImageAnalyzer
     {
-        private List<ImageSegment> _segments = new();
+        private List<Blob> _segments = new();
         private Bitmap _bitmap;
-        private SuperSampler superSampler = new();
         private List<ComparisonResult> comparisonResults = new();
+
+
+        private readonly BlobCounter blobCounter = new()
+        {
+            FilterBlobs = true,
+            MinHeight = 8,
+            MinWidth = 8
+        };
 
         public List<ComparisonResult> Analyze(Bitmap bitmap, ImageDatabase db)
         {
             _bitmap = (Bitmap)bitmap.Clone();
-            _segments = ExtractAndSaveSegments(_bitmap);
+            _segments = ExtractSegments(_bitmap);
 
-            comparisonResults = ImageHashComparator.CompareSegments(_segments, db);
+            comparisonResults = ImageHashComparator.CompareSegments(_segments, db, _bitmap);
 
-            return comparisonResults.FindAll(r => r.SimilarityPercentage >= 50);
+            return comparisonResults.FindAll(r => r.SimilarityPercentage >= 65);
         }
 
-        private List<ImageSegment> ExtractAndSaveSegments(Bitmap original)
+        private List<Blob> ExtractSegments(Bitmap bitmap)
         {
-            GraphicsUnit unit = GraphicsUnit.Pixel;
-            List<ImageSegment> segments = new();
-
-            for (int x = 0; x < original.Width; x++)
-            {
-                for (int y = 0; y < original.Height; y++)
-                {
-                    Color pixelColor = original.GetPixel(x, y);
-                    if (pixelColor.ToArgb() == Color.Black.ToArgb())
-                    {
-                        // Если текущий пиксель черный, начинаем процесс извлечения сегмента
-                        List<Point> segmentPoints = new();
-                        ExtractSegment(original, x, y, ref segmentPoints);
-
-                        Bitmap segmentImage = CreateSegmentImage(original, segmentPoints);
-
-                        // Применяем суперсемплинг
-                        Bitmap resizedSegment = superSampler.Apply(segmentImage);
-
-                        // Вычисляем перцептивный хеш для сегмента
-                        ulong perceptualHash = HashCalculator.Calculate(resizedSegment);
-
-                        // Сохраняем информацию о сегменте
-                        segments.Add(new ImageSegment
-                        {
-                            SegmentImage = resizedSegment,
-                            PerceptualHash = perceptualHash,
-                            StartPoint = new Point(x, y),
-                            Size = resizedSegment.Size * 10,
-                        });
-                    }
-                }
-            }
-
-            return segments;
+            blobCounter.ProcessImage(bitmap);
+            return blobCounter.GetObjectsInformation().ToList();
         }
 
         // Метод для извлечения сегмента с использованием Depth-First Search (DFS)

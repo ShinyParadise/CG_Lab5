@@ -23,7 +23,6 @@
                             int neighborX = Math.Clamp(x + i, 0, original.Width - 1);
                             int neighborY = Math.Clamp(y + j, 0, original.Height - 1);
 
-                            // Если структурный элемент перекрывает черный пиксель, делаем текущий пиксель белым
                             if (original.GetPixel(neighborX, neighborY).R == 0)
                             {
                                 result.SetPixel(x, y, Color.Black);

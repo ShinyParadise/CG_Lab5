@@ -1,25 +1,28 @@
-﻿using CG_Lab5.DatabaseUnit;
+﻿using AForge.Imaging;
+using CG_Lab5.DatabaseUnit;
 
 namespace CG_Lab5.AnalyzerUnit
 {
     class ImageHashComparator
     {
-        public static List<ComparisonResult> CompareSegments(List<ImageSegment> segments, ImageDatabase db)
+        public static List<ComparisonResult> CompareSegments(List<Blob> segments, ImageDatabase db, Bitmap source)
         {
             var imageHashes = db.ImageHashes;
             List<ComparisonResult> similarityResults = new();
 
-            foreach (var segment in segments)
+            foreach (Blob segment in segments)
             {
+                var blobBitmap = ExtractBitmapFromBlob(segment, source);
+                var currentSegmentHash = HashCalculator.Calculate(blobBitmap);
+
                 foreach (var imageHash in imageHashes)
                 {
-                    double similarity = CompareHashes(segment.PerceptualHash, imageHash.Value);
+                    double similarity = CompareHashes(currentSegmentHash, imageHash.Value);
                     var result = new ComparisonResult
                     {
                         SimilarityPercentage = similarity,
                         ImageName = imageHash.Key,
-                        SegmentSize = segment.Size,
-                        StartPoint = segment.StartPoint,
+                        Blob = segment,
                     };
 
                     similarityResults.Add(result);
@@ -51,6 +54,20 @@ namespace CG_Lab5.AnalyzerUnit
                 number >>= 1;
             }
             return count;
+        }
+
+        private static Bitmap ExtractBitmapFromBlob(Blob blob, Bitmap sourceImage)
+        {
+            // Получение координат объекта
+            int x = blob.Rectangle.X;
+            int y = blob.Rectangle.Y;
+            int width = blob.Rectangle.Width;
+            int height = blob.Rectangle.Height;
+
+            // Выделение соответствующей области на исходном изображении
+            Bitmap blobBitmap = sourceImage.Clone(new Rectangle(x, y, width, height), sourceImage.PixelFormat);
+
+            return blobBitmap;
         }
     }
 }
