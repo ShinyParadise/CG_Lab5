@@ -47,7 +47,7 @@
             findByKeyBtn = new Button();
             label4 = new Label();
             textBox4 = new TextBox();
-            button3 = new Button();
+            findByHashBtn = new Button();
             label5 = new Label();
             textBox5 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -244,14 +244,15 @@
             textBox4.TabIndex = 16;
             textBox4.TextChanged += textBox4_TextChanged;
             // 
-            // button3
+            // findByHashBtn
             // 
-            button3.Location = new Point(1239, 437);
-            button3.Name = "button3";
-            button3.Size = new Size(241, 36);
-            button3.TabIndex = 21;
-            button3.Text = "Найти образ по хешу";
-            button3.UseVisualStyleBackColor = true;
+            findByHashBtn.Location = new Point(1239, 437);
+            findByHashBtn.Name = "findByHashBtn";
+            findByHashBtn.Size = new Size(241, 36);
+            findByHashBtn.TabIndex = 21;
+            findByHashBtn.Text = "Найти образ по хешу";
+            findByHashBtn.UseVisualStyleBackColor = true;
+            findByHashBtn.Click += findByHashBtn_Click;
             // 
             // label5
             // 
@@ -275,7 +276,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1492, 863);
-            Controls.Add(button3);
+            Controls.Add(findByHashBtn);
             Controls.Add(label5);
             Controls.Add(textBox5);
             Controls.Add(findByKeyBtn);
@@ -325,7 +326,7 @@
         private Button findByKeyBtn;
         private Label label4;
         private TextBox textBox4;
-        private Button button3;
+        private Button findByHashBtn;
         private Label label5;
         private TextBox textBox5;
     }

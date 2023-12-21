@@ -178,24 +178,53 @@ namespace CG_Lab5
 
             if (keyValue != null)
             {
-                var bmp = new Bitmap(8, 8);
-                var hash = keyValue?.Item2 ?? 0;
+                //var bmp = new Bitmap(8, 8);
+                //var hash = keyValue?.Item2 ?? 0;
 
-                int x = 0, y = 0;
-                foreach (byte b in BitConverter.GetBytes(hash))
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        if ((b & (1 << i)) != 0)
-                        {
-                            bmp.SetPixel(x++ % 8, y % 8, Color.Black);
-                        }
-                    }
-                    y++;
-                }
-
-                LoadBitmap(bmp);
+                //LoadBitmapByHash(bmp, hash);
+                MessageBox.Show($"В базе есть ключ {keyValue?.Item1} со значением {keyValue?.Item2}");
             }
+            else
+            {
+                MessageBox.Show("Такого значения в базе нет");
+            }
+        }
+
+        private void findByHashBtn_Click(object sender, EventArgs e)
+        {
+            (string, ulong)? keyValue = _db.GetByHash(_hash);
+
+            if (keyValue != null)
+            {
+                //var bmp = new Bitmap(8, 8);
+                //var hash = keyValue?.Item2 ?? 0;
+
+                //LoadBitmapByHash(bmp, hash);
+
+                MessageBox.Show($"В базе есть ключ {keyValue?.Item1} со значением {keyValue?.Item2}");
+            }
+            else
+            {
+                MessageBox.Show("Такого значения в базе нет");
+            }
+        }
+
+        private void LoadBitmapByHash(Bitmap bmp, ulong hash)
+        {
+            int x = 0, y = 0;
+            foreach (byte b in BitConverter.GetBytes(hash))
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    if ((b & (1 << i)) != 0)
+                    {
+                        bmp.SetPixel(x++ % 8, y % 8, Color.Black);
+                    }
+                }
+                y++;
+            }
+
+            LoadBitmap(new Bitmap(bmp, new Size(32, 32)));
         }
     }
 }

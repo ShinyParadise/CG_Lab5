@@ -25,7 +25,6 @@
     <ShowAsAssociation>
       <Field Name="_grayscaleFilter" />
       <Field Name="_mininumFilter" />
-      <Field Name="_monochromeFilter" />
       <Field Name="_dilationFilter" />
     </ShowAsAssociation>
   </Class>
