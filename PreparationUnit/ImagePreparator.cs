@@ -29,7 +29,7 @@
             } 
         }
 
-        private FloydSteinbergFilter _monochromeFilter = new();
+        private MonochromeFilter _monochromeFilter = new();
         private GrayscaleFilter _grayscaleFilter = new();
         private MininumFilter _mininumFilter = new();
         private DilationFilter _dilationFilter = new();
