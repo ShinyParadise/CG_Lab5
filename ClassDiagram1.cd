@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CG_Lab5.PreparationUnit.DilationFIlter" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>PreparationUnit\DilationFIlter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CG_Lab5.PreparationUnit.GrayscaleFilter" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PreparationUnit\GrayscaleFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CG_Lab5.PreparationUnit.ImagePreparator">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAYAEgEKAAIBAgACAAIEAAgABAA=</HashCode>
+      <FileName>PreparationUnit\ImagePreparator.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_grayscaleFilter" />
+      <Field Name="_mininumFilter" />
+      <Field Name="_monochromeFilter" />
+      <Field Name="_dilationFilter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CG_Lab5.PreparationUnit.Inverter" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PreparationUnit\Inverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CG_Lab5.PreparationUnit.MininumFilter" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PreparationUnit\MininumFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CG_Lab5.PreparationUnit.MonochromeFilter" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>PreparationUnit\MonochromeFilter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CG_Lab5.DatabaseUnit.ImageDatabase">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAJAAACAAA=</HashCode>
+      <FileName>DatabaseUnit\ImageDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CG_Lab5.DatabaseUnit.HashCalculator">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgDBAAAAAAAAAQAAEAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseUnit\HashCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CG_Lab5.AnalyzerUnit.ImageHashComparator">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAEAAAAAAAAAgAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnalyzerUnit\ImageHashComparator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CG_Lab5.AnalyzerUnit.ImageAnalyzer">
+    <Position X="10.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAQIAQAAAAAAAAAgAAAAAAAAAAAAAIAQAAAA=</HashCode>
+      <FileName>AnalyzerUnit\ImageAnalyzer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="inverter" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CG_Lab5.AnalyzerUnit.ComparisonResult">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnalyzerUnit\ComparasionResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CG_Lab5.PreparationUnit.IFilter">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>PreparationUnit\IFilter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

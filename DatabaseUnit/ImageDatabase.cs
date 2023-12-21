@@ -10,16 +10,30 @@
             ImageHashes[imageName] = perceptualHash;
         }
 
-        public ulong GetHash(string imageName)
+        public (string, ulong)? GetHash(string imageName)
         {
             if (ImageHashes.ContainsKey(imageName))
             {
-                return ImageHashes[imageName];
+                return (imageName, ImageHashes[imageName]);
             }
             else
             {
                 Console.WriteLine($"Образ с именем {imageName} не найден в базе данных.");
-                return 0;
+                return null;
+            }
+        }
+
+        public (string, ulong)? GetByHash(ulong hash)
+        {
+            if (ImageHashes.ContainsValue(hash))
+            {
+                string key = ImageHashes.First(x => x.Value == hash).Key;
+                return (key, ImageHashes[key]);
+            }
+            else
+            {
+                Console.WriteLine($"Образ с хэшем {hash} не найден в базе данных.");
+                return null;
             }
         }
 

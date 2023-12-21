@@ -44,6 +44,12 @@
             loadImagesBtn = new Button();
             button1 = new Button();
             analyzeBtn = new Button();
+            findByKeyBtn = new Button();
+            label4 = new Label();
+            textBox4 = new TextBox();
+            button3 = new Button();
+            label5 = new Label();
+            textBox5 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -80,7 +86,7 @@
             // 
             // monochromeBtn
             // 
-            monochromeBtn.Location = new Point(1239, 270);
+            monochromeBtn.Location = new Point(1239, 188);
             monochromeBtn.Name = "monochromeBtn";
             monochromeBtn.Size = new Size(241, 36);
             monochromeBtn.TabIndex = 3;
@@ -90,7 +96,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(1395, 64);
+            textBox1.Location = new Point(1395, 54);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(85, 27);
             textBox1.TabIndex = 4;
@@ -99,7 +105,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1239, 67);
+            label1.Location = new Point(1239, 57);
             label1.Name = "label1";
             label1.Size = new Size(122, 20);
             label1.TabIndex = 5;
@@ -107,7 +113,7 @@
             // 
             // applyMinimumFilterBtn
             // 
-            applyMinimumFilterBtn.Location = new Point(1239, 104);
+            applyMinimumFilterBtn.Location = new Point(1239, 87);
             applyMinimumFilterBtn.Name = "applyMinimumFilterBtn";
             applyMinimumFilterBtn.Size = new Size(241, 36);
             applyMinimumFilterBtn.TabIndex = 6;
@@ -118,7 +124,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1239, 329);
+            label2.Location = new Point(1239, 236);
             label2.Name = "label2";
             label2.Size = new Size(97, 20);
             label2.TabIndex = 8;
@@ -126,7 +132,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(1395, 326);
+            textBox2.Location = new Point(1395, 233);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(85, 27);
             textBox2.TabIndex = 7;
@@ -134,7 +140,7 @@
             // 
             // dilationBtn
             // 
-            dilationBtn.Location = new Point(1239, 372);
+            dilationBtn.Location = new Point(1239, 266);
             dilationBtn.Name = "dilationBtn";
             dilationBtn.Size = new Size(241, 36);
             dilationBtn.TabIndex = 9;
@@ -145,7 +151,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(1239, 233);
+            label3.Location = new Point(1239, 158);
             label3.Name = "label3";
             label3.Size = new Size(117, 20);
             label3.TabIndex = 11;
@@ -153,7 +159,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(1395, 230);
+            textBox3.Location = new Point(1395, 155);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(85, 27);
             textBox3.TabIndex = 10;
@@ -164,7 +170,7 @@
             addImageBtn.BackColor = Color.IndianRed;
             addImageBtn.FlatAppearance.BorderSize = 0;
             addImageBtn.ForeColor = SystemColors.ButtonHighlight;
-            addImageBtn.Location = new Point(1239, 615);
+            addImageBtn.Location = new Point(1239, 663);
             addImageBtn.Name = "addImageBtn";
             addImageBtn.Size = new Size(241, 54);
             addImageBtn.TabIndex = 12;
@@ -177,7 +183,7 @@
             loadImagesBtn.BackColor = Color.IndianRed;
             loadImagesBtn.FlatAppearance.BorderSize = 0;
             loadImagesBtn.ForeColor = SystemColors.ButtonHighlight;
-            loadImagesBtn.Location = new Point(1239, 555);
+            loadImagesBtn.Location = new Point(1239, 603);
             loadImagesBtn.Name = "loadImagesBtn";
             loadImagesBtn.Size = new Size(241, 54);
             loadImagesBtn.TabIndex = 13;
@@ -190,7 +196,7 @@
             button1.BackColor = Color.IndianRed;
             button1.FlatAppearance.BorderSize = 0;
             button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(1239, 495);
+            button1.Location = new Point(1239, 543);
             button1.Name = "button1";
             button1.Size = new Size(241, 54);
             button1.TabIndex = 14;
@@ -211,11 +217,70 @@
             analyzeBtn.UseVisualStyleBackColor = false;
             analyzeBtn.Click += analyzeBtn_Click;
             // 
+            // findByKeyBtn
+            // 
+            findByKeyBtn.Location = new Point(1239, 356);
+            findByKeyBtn.Name = "findByKeyBtn";
+            findByKeyBtn.Size = new Size(241, 36);
+            findByKeyBtn.TabIndex = 18;
+            findByKeyBtn.Text = "Найти образ";
+            findByKeyBtn.UseVisualStyleBackColor = true;
+            findByKeyBtn.Click += findByKeyBtn_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(1239, 326);
+            label4.Name = "label4";
+            label4.Size = new Size(46, 20);
+            label4.TabIndex = 17;
+            label4.Text = "Ключ";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(1395, 323);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(85, 27);
+            textBox4.TabIndex = 16;
+            textBox4.TextChanged += textBox4_TextChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1239, 437);
+            button3.Name = "button3";
+            button3.Size = new Size(241, 36);
+            button3.TabIndex = 21;
+            button3.Text = "Найти образ по хешу";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(1239, 407);
+            label5.Name = "label5";
+            label5.Size = new Size(38, 20);
+            label5.TabIndex = 20;
+            label5.Text = "Хеш";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(1283, 404);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(197, 27);
+            textBox5.TabIndex = 19;
+            textBox5.TextChanged += textBox5_TextChanged;
+            // 
             // MainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1492, 863);
+            Controls.Add(button3);
+            Controls.Add(label5);
+            Controls.Add(textBox5);
+            Controls.Add(findByKeyBtn);
+            Controls.Add(label4);
+            Controls.Add(textBox4);
             Controls.Add(analyzeBtn);
             Controls.Add(button1);
             Controls.Add(loadImagesBtn);
@@ -257,5 +322,11 @@
         private Button loadImagesBtn;
         private Button button1;
         private Button analyzeBtn;
+        private Button findByKeyBtn;
+        private Label label4;
+        private TextBox textBox4;
+        private Button button3;
+        private Label label5;
+        private TextBox textBox5;
     }
 }

@@ -3,6 +3,7 @@ using CG_Lab5.AnalyzerUnit;
 using CG_Lab5.DatabaseUnit;
 using CG_Lab5.PreparationUnit;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace CG_Lab5
 {
@@ -19,6 +20,9 @@ namespace CG_Lab5
         private int _kernelSize = 1;
         private int _matrixSize = 1;
         private int _monochromeBound = 128;
+
+        private string _key = "";
+        private ulong _hash = 0;
 
         public MainScreen()
         {
@@ -156,6 +160,42 @@ namespace CG_Lab5
             }
 
             LoadBitmap(_bitmap);
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            _key = textBox4.Text;
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            _ = ulong.TryParse(textBox4.Text, out _hash);
+        }
+
+        private void findByKeyBtn_Click(object sender, EventArgs e)
+        {
+            (string, ulong)? keyValue = _db.GetHash(_key);
+
+            if (keyValue != null)
+            {
+                var bmp = new Bitmap(8, 8);
+                var hash = keyValue?.Item2 ?? 0;
+
+                int x = 0, y = 0;
+                foreach (byte b in BitConverter.GetBytes(hash))
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        if ((b & (1 << i)) != 0)
+                        {
+                            bmp.SetPixel(x++ % 8, y % 8, Color.Black);
+                        }
+                    }
+                    y++;
+                }
+
+                LoadBitmap(bmp);
+            }
         }
     }
 }
