@@ -23,6 +23,16 @@
             }
         }
 
+        public void ChangeHash(string imageName, ulong hash)
+        {
+            ImageHashes[imageName] = hash;
+        }
+
+        public void RemoveHash(string imageName)
+        {
+            ImageHashes.Remove(imageName);
+        }
+
         public (string, ulong)? GetByHash(ulong hash)
         {
             if (ImageHashes.ContainsValue(hash))
