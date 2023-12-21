@@ -1,11 +1,11 @@
 ﻿namespace CG_Lab5.PreparationUnit
 {
-    public class DilationFIlter : IFilter
+    public class DilationFilter : IFilter
     {
         private int kernelSize = 3;
 
-        public DilationFIlter() { }
-        public DilationFIlter(int kernelSize) { this.kernelSize = kernelSize; }
+        public DilationFilter() { }
+        public DilationFilter(int kernelSize) { this.kernelSize = kernelSize; }
 
         public Bitmap Apply(Bitmap original)
         {
@@ -27,6 +27,10 @@
                             {
                                 result.SetPixel(x, y, Color.Black);
                                 break;
+                            }
+                            else
+                            {
+                                result.SetPixel(x, y, Color.White);
                             }
                         }
                     }

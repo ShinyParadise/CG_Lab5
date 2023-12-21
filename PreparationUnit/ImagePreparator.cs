@@ -29,10 +29,10 @@
             } 
         }
 
-        private MonochromeFilter _monochromeFilter = new();
+        private FloydSteinbergFilter _monochromeFilter = new();
         private GrayscaleFilter _grayscaleFilter = new();
         private MininumFilter _mininumFilter = new();
-        private DilationFIlter _dilationFilter = new();
+        private DilationFilter _dilationFilter = new();
 
         private List<IFilter> _filters = new();
         private int matrixSize;

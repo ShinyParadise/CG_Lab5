@@ -148,6 +148,12 @@ namespace CG_Lab5
             var pen = new Pen(Color.Orange, 3);
             var brush = new SolidBrush(Color.Orange);
 
+            if (results.Count == 0)
+            {
+                MessageBox.Show("Образы не были распознаны");
+                return;
+            }
+
             foreach (var res in results)
             {
                 _graphics.DrawRectangle(pen, res.Blob.Rectangle);
