@@ -25,7 +25,8 @@ namespace CG_Lab5.AnalyzerUnit
 
             comparisonResults = ImageHashComparator.CompareSegments(_segments, db, _bitmap);
 
-            return comparisonResults.FindAll(r => r.SimilarityPercentage >= 65);
+            comparisonResults = comparisonResults.FindAll(r => r.SimilarityPercentage >= 65);
+            return Filter(comparisonResults);
         }
 
         private List<Blob> ExtractSegments(Bitmap bitmap)
@@ -34,6 +35,28 @@ namespace CG_Lab5.AnalyzerUnit
 
             blobCounter.ProcessImage(invertedBmp);
             return blobCounter.GetObjectsInformation().ToList();
+        }
+
+        private static List<ComparisonResult> Filter(List<ComparisonResult> results)
+        {
+            var filtered = new List<ComparisonResult>();
+
+            foreach (ComparisonResult result in results)
+            {
+                var resInFilter = filtered.Find(x => x.Blob == result.Blob);
+
+                if (resInFilter != null && result.SimilarityPercentage > resInFilter.SimilarityPercentage)
+                {
+                    filtered.Add(result);
+                    filtered.Remove(resInFilter);
+                }
+                else if (resInFilter == null) 
+                {
+                    filtered.Add(result);
+                }
+            }
+
+            return filtered;
         }
     }
 }
